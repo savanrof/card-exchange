@@ -1,7 +1,6 @@
 package com.tlu.cardexchange.entity;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,73 +12,84 @@ import javax.persistence.Table;
 @Table(name = "historyinputcard")
 public class HistoryInputCard {
 
-	@Id
-	@Column(name = "seri")
-	private Integer seri;
+  @Id
+  @Column(name = "seri")
+  private Integer seri;
 
-	@ManyToOne
-	@JoinColumn(name = "Username")
-	private Account account;
+  @ManyToOne
+  @JoinColumn(name = "Username")
+  private Account account;
 
-	@ManyToOne
-	@JoinColumn(name = "IDHomeNetwork")
-	private Discount homeNetwork;
+  @ManyToOne
+  @JoinColumn(name = "idhome_network")
+  private Discount homeNetwork;
 
-	@Column(name = "Time")
-	private Date time;
+  @Column(name = "Time")
+  private Date time;
 
-	@Column(name = "money")
-	private Float money;
+  @Column(name = "money")
+  private Float money;
 
-	@Column(name = "status")
-	private String status;
+  @Column(name = "status")
+  private String status;
 
-	public Integer getSeri() {
-		return seri;
-	}
+  @Column(name = "transID", unique = true)
+  private String transID;
 
-	public void setSeri(Integer seri) {
-		this.seri = seri;
-	}
+  public String getTransID() {
+    return transID;
+  }
 
-	public Account getAccount() {
-		return account;
-	}
+  public void setTransID(String transID) {
+    this.transID = transID;
+  }
 
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+  public Integer getSeri() {
+    return seri;
+  }
 
-	public Discount getHomeNetwork() {
-		return homeNetwork;
-	}
+  public void setSeri(Integer seri) {
+    this.seri = seri;
+  }
 
-	public void setHomeNetwork(Discount homeNetwork) {
-		this.homeNetwork = homeNetwork;
-	}
+  public Account getAccount() {
+    return account;
+  }
 
-	public Date getTime() {
-		return time;
-	}
+  public void setAccount(Account account) {
+    this.account = account;
+  }
 
-	public void setTime(Date time) {
-		this.time = time;
-	}
+  public Discount getHomeNetwork() {
+    return homeNetwork;
+  }
 
-	public Float getMoney() {
-		return money;
-	}
+  public void setHomeNetwork(Discount homeNetwork) {
+    this.homeNetwork = homeNetwork;
+  }
 
-	public void setMoney(Float money) {
-		this.money = money;
-	}
+  public Date getTime() {
+    return time;
+  }
 
-	public String getStatus() {
-		return status;
-	}
+  public void setTime(Date time) {
+    this.time = time;
+  }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+  public Float getMoney() {
+    return money;
+  }
+
+  public void setMoney(Float money) {
+    this.money = money;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
 }
