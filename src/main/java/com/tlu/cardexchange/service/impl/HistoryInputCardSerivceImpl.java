@@ -21,4 +21,13 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
     return inputCardRepository.findByTransID(transID);
   }
 
+  @Override
+  public boolean transIdCheck(String transID) {
+    HistoryInputCard inputCard = inputCardRepository.findByTransID(transID);
+    if (inputCard != null) {
+      return true;
+    }
+    return false;
+  }
+
 }

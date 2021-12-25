@@ -6,4 +6,6 @@ import com.tlu.cardexchange.entity.HistoryInputCard;
 @Service
 public interface HistoryInputCardService {
   HistoryInputCard getByTransID(String transID);
+
+  boolean transIdCheck(String transID);
 }
