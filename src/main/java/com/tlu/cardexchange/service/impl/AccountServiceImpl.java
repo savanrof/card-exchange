@@ -2,6 +2,7 @@ package com.tlu.cardexchange.service.impl;
 
 import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tlu.cardexchange.entity.Account;
@@ -35,4 +36,13 @@ public class AccountServiceImpl implements AccountService {
     return accountRepository.save(user);
   }
 
+  @Override
+  @Transactional
+  public Account createUser(Account payload) {
+    if (payload == null) {
+      throw new IllegalArgumentException("Request payload can not be null");
+    }
+    payload.setPassword(new BCryptPasswordEncoder().encode(payload.getPassword()));
+    return accountRepository.save(payload);
+  }
 }

@@ -1,5 +1,6 @@
 package com.tlu.cardexchange.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class HitstoryInputCardController {
 
   @CrossOrigin
   @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<HistoryInputCard> create(@RequestBody InputCardDTO dto) {
-    return ResponseEntity.ok(inputCardService.create(dto));
+  public ResponseEntity<HistoryInputCard> create(@RequestBody InputCardDTO dto, HttpServletRequest request) {
+    return ResponseEntity.ok(inputCardService.create(dto, request));
   }
 }

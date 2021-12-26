@@ -9,4 +9,6 @@ public interface AccountService {
   Account findByUsername(String username);
 
   Account updateMoney(BigDecimal value, String username);
+
+  Account createUser(Account payload);
 }

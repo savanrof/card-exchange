@@ -40,8 +40,7 @@ public class CallBackServiceImpl implements CallBackService {
     BigDecimal moneyAfterDiscount = calculateMoneyRecive(getCardValue(data), inputCard.getHomeNetwork().getDiscount());
 
     if (successCodeCheck(errorCode)) {
-      // Assume current user has username: admin
-      accountService.updateMoney(moneyAfterDiscount, "admin");
+      accountService.updateMoney(moneyAfterDiscount, inputCard.getAccount().getUsername());
     } else if (wrongCardValueCheck(errorCode)) {
       accountService.updateMoney(moneyAfterDiscount.divide(BigDecimal.valueOf(2)), "admin");
     }
