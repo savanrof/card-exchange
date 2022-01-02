@@ -1,12 +1,16 @@
 package com.tlu.cardexchange.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.tlu.cardexchange.dto.HistoryCardDTO;
 import com.tlu.cardexchange.dto.InputCardDTO;
 import com.tlu.cardexchange.entity.Discount;
 import com.tlu.cardexchange.entity.HistoryInputCard;
+import com.tlu.cardexchange.mapper.InputCardMapper;
 import com.tlu.cardexchange.repository.HistoryInputCardRepository;
 import com.tlu.cardexchange.service.DiscountService;
 import com.tlu.cardexchange.service.HistoryInputCardService;
@@ -18,12 +22,14 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
   private final HistoryInputCardRepository inputCardRepository;
   private final DiscountService discountService;
   private final JwtUtil jwtUtil;
+  private final InputCardMapper mapper;
 
   @Autowired
-  public HistoryInputCardSerivceImpl(HistoryInputCardRepository inputCardRepository, DiscountService discountService, JwtUtil jwtUtil) {
+  public HistoryInputCardSerivceImpl(HistoryInputCardRepository inputCardRepository, DiscountService discountService, JwtUtil jwtUtil, InputCardMapper mapper) {
     this.inputCardRepository = inputCardRepository;
     this.discountService = discountService;
     this.jwtUtil = jwtUtil;
+    this.mapper = mapper;
   }
 
   @Override
@@ -50,6 +56,11 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
     inputCard.setTime(dto.getTime());
     inputCard.setTransID(dto.getTransID());
     return inputCardRepository.save(inputCard);
+  }
+
+  @Override
+  public List<HistoryCardDTO> getHistoryInputCardByUsername(HttpServletRequest request) {
+    return inputCardRepository.findByAccount(jwtUtil.getUser(request)).stream().map(mapper::fromEntity).collect(Collectors.toList());
   }
 
 }

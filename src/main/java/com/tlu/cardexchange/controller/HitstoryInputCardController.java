@@ -1,5 +1,6 @@
 package com.tlu.cardexchange.controller;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.tlu.cardexchange.dto.HistoryCardDTO;
 import com.tlu.cardexchange.dto.InputCardDTO;
 import com.tlu.cardexchange.entity.HistoryInputCard;
 import com.tlu.cardexchange.service.HistoryInputCardService;
@@ -36,5 +38,11 @@ public class HitstoryInputCardController {
   @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<HistoryInputCard> create(@RequestBody InputCardDTO dto, HttpServletRequest request) {
     return ResponseEntity.ok(inputCardService.create(dto, request));
+  }
+
+  @CrossOrigin
+  @GetMapping(value = "/all")
+  public ResponseEntity<List<HistoryCardDTO>> getAll(HttpServletRequest request) {
+    return ResponseEntity.ok(inputCardService.getHistoryInputCardByUsername(request));
   }
 }
