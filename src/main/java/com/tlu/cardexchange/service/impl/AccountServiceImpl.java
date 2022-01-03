@@ -42,6 +42,9 @@ public class AccountServiceImpl implements AccountService {
     if (payload == null) {
       throw new IllegalArgumentException("Request payload can not be null");
     }
+    if (findByUsername(payload.getUsername()) != null) {
+      throw new IllegalArgumentException("Username has already exist");
+    }
     payload.setPassword(new BCryptPasswordEncoder().encode(payload.getPassword()));
     return accountRepository.save(payload);
   }
