@@ -40,7 +40,7 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
   @Override
   public boolean transIdCheck(String transID) {
     HistoryInputCard inputCard = inputCardRepository.findByTransID(transID);
-    return inputCard == null;
+    return inputCard != null;
   }
 
   @Override
