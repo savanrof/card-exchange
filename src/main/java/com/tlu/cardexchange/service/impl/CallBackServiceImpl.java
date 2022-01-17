@@ -35,7 +35,7 @@ public class CallBackServiceImpl implements CallBackService {
   @Transactional
   public void callBackResult(Integer errorCode, String data, String transID, String msg, String sign) {
     HistoryInputCard inputCard = inputCardService.getByTransID(transID);
-    System.err.print(errorCode)
+    System.err.print(errorCode);
     inputCard.setStatus(codeUtil.getMessageFromCode(errorCode));
 
     BigDecimal moneyAfterDiscount = calculateMoneyRecive(getCardValue(data), inputCard.getHomeNetwork().getDiscount());
