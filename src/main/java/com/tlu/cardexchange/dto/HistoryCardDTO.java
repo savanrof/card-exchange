@@ -3,7 +3,7 @@ package com.tlu.cardexchange.dto;
 import java.util.Date;
 
 public class HistoryCardDTO {
-  private Integer seri;
+  private String seri;
 
   private Date time;
 
@@ -21,11 +21,11 @@ public class HistoryCardDTO {
     this.status = status;
   }
 
-  public Integer getSeri() {
+  public String getSeri() {
     return seri;
   }
 
-  public void setSeri(Integer seri) {
+  public void setSeri(String seri) {
     this.seri = seri;
   }
 

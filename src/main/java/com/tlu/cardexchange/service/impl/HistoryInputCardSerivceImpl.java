@@ -14,6 +14,7 @@ import com.tlu.cardexchange.mapper.InputCardMapper;
 import com.tlu.cardexchange.repository.HistoryInputCardRepository;
 import com.tlu.cardexchange.service.DiscountService;
 import com.tlu.cardexchange.service.HistoryInputCardService;
+import com.tlu.cardexchange.util.ErrorCodeUtil;
 import com.tlu.cardexchange.util.JwtUtil;
 
 @Service
@@ -23,13 +24,15 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
   private final DiscountService discountService;
   private final JwtUtil jwtUtil;
   private final InputCardMapper mapper;
+  private final ErrorCodeUtil codeUtil;
 
   @Autowired
-  public HistoryInputCardSerivceImpl(HistoryInputCardRepository inputCardRepository, DiscountService discountService, JwtUtil jwtUtil, InputCardMapper mapper) {
+  public HistoryInputCardSerivceImpl(HistoryInputCardRepository inputCardRepository, DiscountService discountService, JwtUtil jwtUtil, InputCardMapper mapper, ErrorCodeUtil codeUtil) {
     this.inputCardRepository = inputCardRepository;
     this.discountService = discountService;
     this.jwtUtil = jwtUtil;
     this.mapper = mapper;
+    this.codeUtil = codeUtil;
   }
 
   @Override
@@ -40,7 +43,7 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
   @Override
   public boolean transIdCheck(String transID) {
     HistoryInputCard inputCard = inputCardRepository.findByTransID(transID);
-    return inputCard == null;
+    return inputCard != null;
   }
 
   @Override
@@ -52,7 +55,7 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
     inputCard.setSeri(dto.getSeri());
     inputCard.setHomeNetwork(discount);
     inputCard.setMoney(Float.parseFloat(dto.getMoney().toString()));
-    inputCard.setStatus(dto.getStatus());
+    inputCard.setStatus(codeUtil.getMessageFromCode(dto.getStatus()));
     inputCard.setTime(dto.getTime());
     inputCard.setTransID(dto.getTransID());
     return inputCardRepository.save(inputCard);

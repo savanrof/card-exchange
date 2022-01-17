@@ -5,7 +5,7 @@ import com.tlu.cardexchange.entity.Account;
 
 public class InputCardDTO {
 
-  private Integer seri;
+  private String seri;
 
   private Account account;
 
@@ -23,15 +23,15 @@ public class InputCardDTO {
     this.homeNetwork = homeNetwork;
   }
 
-  private String status;
+  private Integer status;
 
   private String transID;
 
-  public Integer getSeri() {
+  public String getSeri() {
     return seri;
   }
 
-  public void setSeri(Integer seri) {
+  public void setSeri(String seri) {
     this.seri = seri;
   }
 
@@ -59,11 +59,11 @@ public class InputCardDTO {
     this.money = money;
   }
 
-  public String getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 

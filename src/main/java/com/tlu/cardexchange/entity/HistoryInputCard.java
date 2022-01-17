@@ -14,7 +14,7 @@ public class HistoryInputCard {
 
   @Id
   @Column(name = "seri")
-  private Integer seri;
+  private String seri;
 
   @ManyToOne
   @JoinColumn(name = "Username")
@@ -44,11 +44,11 @@ public class HistoryInputCard {
     this.transID = transID;
   }
 
-  public Integer getSeri() {
+  public String getSeri() {
     return seri;
   }
 
-  public void setSeri(Integer seri) {
+  public void setSeri(String seri) {
     this.seri = seri;
   }
 
