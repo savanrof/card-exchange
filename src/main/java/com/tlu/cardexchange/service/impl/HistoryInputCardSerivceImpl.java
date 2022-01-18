@@ -48,7 +48,7 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
 
   @Override
   @Transactional
-  public HistoryInputCard create(InputCardDTO dto, HttpServletRequest request) {
+  public HistoryCardDTO create(InputCardDTO dto, HttpServletRequest request) {
     Discount discount = discountService.findByNetworkAndPrice(dto.getHomeNetwork(), dto.getMoney());
     HistoryInputCard inputCard = new HistoryInputCard();
     inputCard.setAccount(jwtUtil.getUser(request));
@@ -58,7 +58,7 @@ public class HistoryInputCardSerivceImpl implements HistoryInputCardService {
     inputCard.setStatus(codeUtil.getMessageFromCode(dto.getStatus()));
     inputCard.setTime(dto.getTime());
     inputCard.setTransID(dto.getTransID());
-    return inputCardRepository.save(inputCard);
+    return mapper.fromEntity(inputCardRepository.save(inputCard));
   }
 
   @Override

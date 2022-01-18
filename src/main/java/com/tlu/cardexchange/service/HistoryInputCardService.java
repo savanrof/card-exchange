@@ -13,7 +13,7 @@ public interface HistoryInputCardService {
 
   boolean transIdCheck(String transID);
 
-  HistoryInputCard create(InputCardDTO dto, HttpServletRequest request);
+  HistoryCardDTO create(InputCardDTO dto, HttpServletRequest request);
 
   List<HistoryCardDTO> getHistoryInputCardByUsername(HttpServletRequest request);
 }

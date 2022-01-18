@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tlu.cardexchange.dto.HistoryCardDTO;
 import com.tlu.cardexchange.dto.InputCardDTO;
-import com.tlu.cardexchange.entity.HistoryInputCard;
 import com.tlu.cardexchange.service.HistoryInputCardService;
 
 @RestController
@@ -36,7 +35,7 @@ public class HitstoryInputCardController {
 
   @CrossOrigin
   @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<HistoryInputCard> create(@RequestBody InputCardDTO dto, HttpServletRequest request) {
+  public ResponseEntity<HistoryCardDTO> create(@RequestBody InputCardDTO dto, HttpServletRequest request) {
     return ResponseEntity.ok(inputCardService.create(dto, request));
   }
 
