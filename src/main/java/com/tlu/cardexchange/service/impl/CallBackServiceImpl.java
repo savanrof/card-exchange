@@ -35,7 +35,7 @@ public class CallBackServiceImpl implements CallBackService {
   @Transactional
   public void callBackResult(Integer errorCode, String data, String transID, String msg, String sign) {
     
-    System.out.print("************************************************\nError code: " + errorCode + ", data: " + data + ", transID " + transID + ", msg " + msg + ", sign " + sign)
+    System.out.print("************************************************\nError code: " + errorCode + ", data: " + data + ", transID " + transID + ", msg " + msg + ", sign " + sign);
     
     HistoryInputCard inputCard = inputCardService.getByTransID(transID);;
     inputCard.setStatus(codeUtil.getMessageFromCode(errorCode));
