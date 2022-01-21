@@ -2,12 +2,14 @@ package com.tlu.cardexchange.service.impl;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.tlu.cardexchange.dto.MoneyDTO;
 import com.tlu.cardexchange.mapper.MoneyMapper;
 import com.tlu.cardexchange.repository.MoneyRepository;
 import com.tlu.cardexchange.service.MoneyService;
 import com.tlu.cardexchange.util.JwtUtil;
 
+@Service
 public class MoneyServiceImpl implements MoneyService {
   private final MoneyRepository moneyRepository;
   private final MoneyMapper mapper;
