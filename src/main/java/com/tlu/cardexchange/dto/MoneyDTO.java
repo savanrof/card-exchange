@@ -1,13 +1,15 @@
 package com.tlu.cardexchange.dto;
 
-public class MoneyDTO {
-  private Float money;
+import java.math.BigDecimal;
 
-  public Float getMoney() {
+public class MoneyDTO {
+  private BigDecimal money;
+
+  public BigDecimal getMoney() {
     return money;
   }
 
-  public void setMoney(Float money) {
+  public void setMoney(BigDecimal money) {
     this.money = money;
   }
 }

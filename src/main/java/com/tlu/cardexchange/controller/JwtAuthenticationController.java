@@ -1,5 +1,6 @@
 package com.tlu.cardexchange.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +10,13 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.tlu.cardexchange.config.JwtTokenUtil;
+import com.tlu.cardexchange.dto.MoneyDTO;
 import com.tlu.cardexchange.entity.Account;
 import com.tlu.cardexchange.model.JwtRequest;
 import com.tlu.cardexchange.model.JwtResponse;
@@ -49,6 +52,12 @@ public class JwtAuthenticationController {
   @ResponseStatus(code = HttpStatus.CREATED)
   public void createUser(@RequestBody Account payload) {
     accountService.createUser(payload);
+  }
+
+  @GetMapping(value = "/user/money")
+  @CrossOrigin
+  public ResponseEntity<MoneyDTO> getMoney(HttpServletRequest requset) {
+    return ResponseEntity.ok(accountService.getMoney(requset));
   }
 
   private void authenticate(String username, String password) throws Exception {
